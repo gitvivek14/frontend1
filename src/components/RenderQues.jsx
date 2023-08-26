@@ -107,7 +107,7 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
           inputMode='numeric'
           placeholder='Enter Your Amount' 
           min={min}
-          max={max}
+          max={maxi}
           step='any'
           value={bet} onChange={betchange} required name='bet' 
           className='w-full rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px]
