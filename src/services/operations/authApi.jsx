@@ -26,7 +26,7 @@ export function login(email1,password,navigate){
             localStorage.setItem("user",JSON.stringify(response.data.user))
             localStorage.setItem("game",JSON.stringify(response.data.user.game))
              dispatch(setSignUpData({...response.data.user}));
-             dispatch(setquestionno({...response.data.user.game.questionNo}))
+             dispatch(setquestionno({...response.data.user.game?.questionNo}))
             //  dispatch(setteamname(response.data.user.teamName));
             //  dispatch(setpoints(response.data.user.game.teamPoints));
             //  dispatch(setbetamount(response.data.user.game.betAmount));
