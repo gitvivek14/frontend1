@@ -13,7 +13,7 @@ export function login(email1,password,navigate){
         const toastid = toast.loading("Loading..");
         dispatch(setLoading(true))
         try{
-            const response = await apiConnector("POST","https://backend-chi-neon.vercel.app/api/auth/login",{
+            const response = await apiConnector("POST","https://xpedition-com.onrender.com/api/auth/login",{
                 email1,
                 password
             })
@@ -47,7 +47,7 @@ export function getnewquestion(questionNo){
         const toastid = toast.loading("Loading..");
         dispatch(setLoading(true))
         try{
-            const response = await apiConnector("POST","https://backend-chi-neon.vercel.app/api/addQuestion/getquestions",{
+            const response = await apiConnector("POST","https://xpedition-com.onrender.com/api/addQuestion/getquestions",{
                 questionNo,
             })
             if(!response.data.success){
@@ -74,7 +74,7 @@ export function correct(questionNo, optionSelected, bet,email1){
         const toastid = toast.loading("Verifying")
         dispatch(setLoading(true))
         try{
-            const response = await apiConnector("POST","https://backend-chi-neon.vercel.app/api/control/control",{
+            const response = await apiConnector("POST","https://xpedition-com.onrender.com/api/control/control",{
                 questionNo,optionSelected,bet,email1
             })
             if(!response.data.success){
@@ -103,7 +103,7 @@ export function correctl(questionNo, optionSelected, bet,email1,navigate){
         console.log("verifying")
         dispatch(setLoading(true))
         try{
-            const response = await apiConnector("POST","https://backend-chi-neon.vercel.app/api/control/control",{
+            const response = await apiConnector("POST","https://xpedition-com.onrender.com/api/control/control",{
                 questionNo,optionSelected,bet,email1
             })
             if(!response.data.success){
