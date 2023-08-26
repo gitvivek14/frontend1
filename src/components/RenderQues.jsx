@@ -19,10 +19,10 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
   })
   const{loading} = useSelector((state)=>state.auth)
   const bet = formdata.bet
-  let min = (0.4*max)
-  let maxi = max;
+  let min = 0;
+  let maxi = (0.4*max);
   if(max<=1000){
-    min = max;
+    maxi = max;
   }
   const {question} = useSelector((state)=>state.auth, _.isEqual);
   console.log("printing",question)
