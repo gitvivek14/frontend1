@@ -36,6 +36,7 @@ export function login(email1,password,navigate){
             navigate("/game")
         }catch(e){
             toast.error("Login Error") 
+            console.log("login error",e)
         }
         dispatch(setLoading(false))
         toast.dismiss(toastid);
