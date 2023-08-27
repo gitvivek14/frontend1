@@ -11,6 +11,13 @@ import Loading from '../components/Loading';
 
 
 const RenderQues = ({setquestionno,email1,max,questionno}) => {
+   useEffect(() => {
+    // Prompt confirmation when reload page is triggered
+    window.onbeforeunload = () => { return "" };
+        
+    // Unmount the window.onbeforeunload event
+    return () => { window.onbeforeunload = null };
+}, []);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
