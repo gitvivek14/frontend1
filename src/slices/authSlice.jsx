@@ -9,6 +9,8 @@ const initialState = {
     game:localStorage.getItem("game") ? JSON.parse(localStorage.getItem("game")) : null,
     questionnoo:{},
     correct:{},
+    bool:false,
+    status:false
 
 }
 const authSlice = createSlice({
@@ -35,10 +37,16 @@ const authSlice = createSlice({
         },
         setcorrect(state,value){
             state.correct=value.payload;
+        },
+        setbool(state,value){
+            state.bool = value.payload;
+        },
+        setstatus(state,value){
+            state.status = value.payload;
         }
     }
 })
 
 
-export const{setLoading,setSignUpData,setToken,setnewquestion,setgame,setquestionno,setcorrect} = authSlice.actions;
+export const{setLoading,setSignUpData,setToken,setnewquestion,setgame,setquestionno,setcorrect,setbool,setstatus} = authSlice.actions;
 export default authSlice.reducer
