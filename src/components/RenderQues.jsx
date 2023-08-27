@@ -1,23 +1,28 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
+import {createState} from 'state-pool';
 import _ from 'underscore';
 import Tab from './Tab';
-import { correct, correctl } from '../services/operations/authApi';
+import { correct, correctl,changeques} from '../services/operations/authApi';
+import{setbool,setstatus} from '../slices/authSlice'
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 
 
 
 const RenderQues = ({setquestionno,email1,max,questionno}) => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log("printing ques no",questionno)
   questionno = parseInt(questionno)+1;
-  console.log("printing ques no next",questionno)
+  console.log("printing ques no next",questionno) 
   const [formdata, setFormdata] = useState({
     bet:"",
   })
   const{loading} = useSelector((state)=>state.auth)
+  const{bool} = useSelector((state)=>state.auth)
+  const{status} = useSelector((state)=>state.auth)
   const bet = formdata.bet
   let min = 0;
   let maxi = (0.4*max);
@@ -58,25 +63,33 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
   ]
   const handlesubmit=(e)=>{
     e.preventDefault();
-    if(question?.questionNo==="15"){
-      dispatch(correctl(question?.questionNo,option,bet,email1,navigate))
-    }else{
-      dispatch(correct(question?.questionNo,option,bet,email1))
-      console.log("in submiy",questionno)
-      setquestionno(questionno)
-    }
+    
+      if(question.questionNo==="20"){
+        dispatch(correctl(question?.questionNo,option,bet,email1,navigate))
+      }else{
+     dispatch(correct(question?.questionNo,option,bet,email1))
+        // setquestionno(questionno)
+      }
   }
 
+  const changequesbtn = (e)=>{
+    if(bool){
+      e.preventDefault();
+     setquestionno(questionno);
+     dispatch(setbool(false))
+     dispatch(setstatus(false))
+    }
+  }
   if(loading===true){
     return(
         <Loading></Loading>
     )
 }
   return (
-    <div className='w-11/12 p-8 mt-16 flex flex-col items-center justify-center  mx-auto'>
+    <div className='w-11/12 p-8 mt-6 flex flex-col items-center justify-center  mx-auto'>
       {/* question */}
       <div className='mb-0'>
-        <h1 className='text-red-700 text-lg'>Question {question?.questionNo} of 15</h1>
+        <h1 className='text-red-700 text-lg font-semibold'>Question {question?.questionNo} of 20</h1>
       </div>
 
       <div className='flex flex-wrap w-full items-center justify-center mb-0'>
@@ -115,11 +128,32 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
            placeholder:text-richblack-200 focus:outline-none !pr-10'>
           </input>
           <button type='submit' 
-          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900">
+          disabled={bool}
+          className={`${bool? "mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 cursor-not-allowed opacity-50":"mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 cursor-pointer"}`}>
             Submit Your Answer
           </button>
+          <div className='text-center mt-4 flex flex-row gap-2 items-center justify-center'>
+            <div className='font-semibold'>
+            <p className='text-lg'>
+             Status: </p>
+            </div>
+            <div className={`${status==true ? "text-green-500":"text-red-700"} font-semibold text-lg`}>
+            {
+              status?"Submitted":"Not Submitted"
+             }
+            </div>
+          </div>
         </form>
         </div> 
+
+        <div className='className='flex flex-col gap-3 >
+        <button type='button' onClick={changequesbtn}
+        className={`${bool? "mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 cursor-pointer ":"mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900  cursor-not-allowed opacity-50"}`}
+      >
+        Next Question
+      </button>
+
+        </div>
     </div>
   )
 }
