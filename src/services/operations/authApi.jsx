@@ -32,7 +32,7 @@ export function login(email1,password,navigate){
             //  dispatch(setbetamount(response.data.user.game.betAmount));
              dispatch(setgame({...response.data.user.game}));
             
-            console.log("printing response",response)
+            // console.log("printing response",response)
             navigate("/game")
         }catch(e){
             toast.error("Login Error") 
@@ -64,7 +64,7 @@ export function getnewquestion(questionNo){
             // localStorage.setItem("ques",JSON.stringify(response.data.questions))
             
             
-            console.log("printing question response",response)
+            // console.log("printing question response",response)
         }catch(e){
             console.log("errro in fetching question",e)
             toast.error("fetch error") 
@@ -94,7 +94,7 @@ export function correct(questionNo, optionSelected, bet,email1){
             }))
             dispatch(setquestionno({...response.data.questiono}))
             dispatch(setcorrect({...response.data.correct}))
-            console.log("game updated",response.data)
+            // console.log("game updated",response.data)
         }catch(e){
             toast.error("login error")
         }
@@ -107,7 +107,7 @@ export function correct(questionNo, optionSelected, bet,email1){
 export function correctl(questionNo, optionSelected, bet,email1,navigate){
     return async (dispatch)=>{
         const toastid = toast.loading("Verifying")
-        console.log("verifying")
+        // console.log("verifying")
         dispatch(setLoading(true))
         try{
             const response = await apiConnector("POST","https://xpedition-com.onrender.com/api/control/control",{
@@ -123,7 +123,7 @@ export function correctl(questionNo, optionSelected, bet,email1,navigate){
                 ...response.data.game
             }))
             // dispatch(setquestionno({...response.data.questiono}))
-            console.log("game updated",response.data)
+            // console.log("game updated",response.data)
             navigate('/endgame')
         }catch(e){
             toast.error("login error")
@@ -144,7 +144,7 @@ export function changeques(email1){
             })
 
 
-            console.log("printing change ques",response)
+            // console.log("printing change ques",response)
 
             if(!response.data.success){
                 throw new Error(response.data.message);
