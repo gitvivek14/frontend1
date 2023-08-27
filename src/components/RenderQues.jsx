@@ -14,9 +14,9 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("printing ques no",questionno)
+  // console.log("printing ques no",questionno)
   questionno = parseInt(questionno)+1;
-  console.log("printing ques no next",questionno) 
+  // console.log("printing ques no next",questionno) 
   const [formdata, setFormdata] = useState({
     bet:"",
   })
@@ -30,9 +30,9 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
     maxi = max;
   }
   const {question} = useSelector((state)=>state.auth, _.isEqual);
-  console.log("printing",question)
+  // console.log("printing",question)
   const [option, setoption] = useState(question?.optionOne)
-  console.log("printing question",question)
+  // console.log("printing question",question)
   
   const betchange = (e)=>{
     const value = e.target.value;
@@ -106,9 +106,7 @@ const RenderQues = ({setquestionno,email1,max,questionno}) => {
         
         <Tab tabdata={tabData} option={option} setoption={setoption}> 
         </Tab>
-        {
-          console.log("is option changing",option)
-        }
+      
 
       </div> 
 
