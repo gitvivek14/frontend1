@@ -26,8 +26,8 @@ const Game = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[questionnoo,dispatch,questionno]);
 
-    console.log("ques no changed",questionnoo);
-    console.log("sign up",signupData);
+    // console.log("ques no changed",questionnoo);
+    // console.log("sign up",signupData);
 
     if(loading===true){
         return(
