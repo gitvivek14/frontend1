@@ -5,6 +5,7 @@ import {AiOutlineEye , AiOutlineEyeInvisible} from "react-icons/ai"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux"
 import {login} from '../services/operations/authApi'
+import iste from '../assets/forms/iste_logo_white.png'
 
 const Login  = () => {
   const navigate = useNavigate();
@@ -28,10 +29,11 @@ const Login  = () => {
       dispatch(login(email,password,navigate))
   }
   return (
-    <div className='w-full bg-richblack-900 h-screen flex items-center justify-center relative'>
+    <div className='w-full bg-richblack-900 h-screen flex items-center justify-center relative flex-col'>
       <div>
         {/* <!-- Background image --> */}
-        <img src='../assets/forms/iste_logo_white.png'></img>
+        <img src={iste}
+        ></img>
       </div>
        <div className='flex w-11/12 max-w-[1160px] py-12 mx-auto 
     gap-x-20 gap-y-0  bg-richblack-900 items-center justify-center'>
